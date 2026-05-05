@@ -420,13 +420,14 @@ a {
 
 .service-grid,
 .project-grid,
-.achievement-grid {
+.achievement-grid,
+.ai-grid {
   display: grid;
   gap: 16px;
 }
 
 .service-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .project-grid {
@@ -437,11 +438,15 @@ a {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.ai-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .service-card,
 .project-card,
 .achievement-card,
 .experience-card,
-.education-list article {
+.ai-card {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -474,11 +479,15 @@ a {
   background: var(--amber);
 }
 
+.service-card:nth-child(4) .service-icon {
+  background: var(--red);
+}
+
 .service-card h3,
 .project-card h3,
 .achievement-card h3,
 .experience-card h3,
-.education-list h3 {
+.ai-card h3 {
   margin: 0;
   color: var(--ink);
   font-size: 1.14rem;
@@ -489,7 +498,7 @@ a {
 .project-card p,
 .achievement-card p,
 .experience-card p,
-.education-list p,
+.ai-card p,
 .contact-section p {
   margin: 12px 0 0;
   color: var(--muted);
@@ -654,17 +663,26 @@ a {
   border-top-color: var(--amber);
 }
 
-.education-section {
-  padding-top: 0;
+.ai-section {
+  padding-top: 72px;
 }
 
-.education-list {
-  display: grid;
-  gap: 14px;
-}
-
-.education-list article {
+.ai-card {
+  min-height: 224px;
   padding: 24px;
+  border-top: 5px solid var(--teal);
+}
+
+.ai-card:nth-child(2) {
+  border-top-color: var(--blue);
+}
+
+.ai-card:nth-child(3) {
+  border-top-color: var(--red);
+}
+
+.ai-card:nth-child(4) {
+  border-top-color: var(--green);
 }
 
 .contact-section {
@@ -754,6 +772,7 @@ a {
   .service-grid,
   .project-grid,
   .achievement-grid,
+  .ai-grid,
   .section-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -830,6 +849,7 @@ a {
   .service-grid,
   .project-grid,
   .achievement-grid,
+  .ai-grid,
   .section-grid {
     grid-template-columns: 1fr;
   }
@@ -871,13 +891,9 @@ a {
   .project-card,
   .achievement-card,
   .experience-card,
-  .education-list article {
+  .ai-card {
     min-height: auto;
     padding: 20px;
-  }
-
-  .education-section {
-    padding-top: 0;
   }
 }
 

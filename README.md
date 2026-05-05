@@ -28,10 +28,9 @@ No build step or package install is required.
 - Work experience
 - Projects
 - Achievements and certifications
-- Education
+- AI-assisted engineering workflow
 - Contact
 
 ## Deployment
 
 This is a static website. It can be hosted on GitHub Pages, Netlify, Vercel, or any basic static hosting service.
-
