@@ -83,9 +83,11 @@ module.exports = async function handler(req, res) {
   const smtp = getSmtpConfig();
 
   if (!smtp.auth) {
+    const hasUser = Boolean(((process.env.SMTP_USER || process.env.GMAIL_USER || "").trim()));
+    const hasPass = Boolean(((process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || "").trim()));
     const missing = [
-      !smtp.auth && !process.env.SMTP_USER && !process.env.GMAIL_USER ? "SMTP_USER" : "",
-      !smtp.auth && !process.env.SMTP_PASS && !process.env.GMAIL_APP_PASSWORD ? "SMTP_PASS" : "",
+      !hasUser ? "SMTP_USER" : "",
+      !hasPass ? "SMTP_PASS" : "",
     ].filter(Boolean).join(" and ");
 
     renderResponse(
