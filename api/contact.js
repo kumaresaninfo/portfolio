@@ -31,6 +31,10 @@ function escapeHtml(value = "") {
     .replace(/'/g, "&#039;");
 }
 
+function nl2br(value = "") {
+  return escapeHtml(value).replace(/\n/g, "<br>");
+}
+
 function renderResponse(res, statusCode, title, message) {
   res.status(statusCode).setHeader("Content-Type", "text/html; charset=utf-8");
   res.end(`<!doctype html>
@@ -100,13 +104,68 @@ module.exports = async function handler(req, res) {
   }
 
   const emailText = [
-    `Name: ${name}`,
-    `Email: ${email}`,
-    `Subject: ${subject}`,
+    "New portfolio contact form submission",
+    "",
+    `Sender Name: ${name}`,
+    `Sender Email: ${email}`,
+    `Inquiry Subject: ${subject}`,
     "",
     "Message:",
     message,
   ].join("\n");
+
+  const emailHtml = `<!doctype html>
+<html>
+  <body style="margin:0;padding:0;background:#f4f7f9;font-family:Arial,Helvetica,sans-serif;color:#121724;">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#f4f7f9;padding:24px 0;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px;background:#ffffff;border:1px solid #dde6ed;border-radius:8px;overflow:hidden;">
+            <tr>
+              <td style="padding:22px 26px;background:#075855;color:#ffffff;">
+                <p style="margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:0;text-transform:uppercase;">Portfolio Contact</p>
+                <h1 style="margin:0;font-size:22px;line-height:1.3;">New inquiry from ${escapeHtml(name)}</h1>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding:24px 26px;">
+                <p style="margin:0 0 18px;color:#647084;font-size:15px;line-height:1.6;">
+                  Someone submitted the contact form on your portfolio website. The details are below.
+                </p>
+
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;margin-bottom:22px;">
+                  <tr>
+                    <td style="padding:10px 0;width:130px;color:#647084;font-size:14px;border-bottom:1px solid #eef2f5;">Name</td>
+                    <td style="padding:10px 0;color:#121724;font-size:14px;border-bottom:1px solid #eef2f5;font-weight:700;">${escapeHtml(name)}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding:10px 0;width:130px;color:#647084;font-size:14px;border-bottom:1px solid #eef2f5;">Email</td>
+                    <td style="padding:10px 0;color:#121724;font-size:14px;border-bottom:1px solid #eef2f5;font-weight:700;">
+                      <a href="mailto:${escapeHtml(email)}" style="color:#0c7c78;text-decoration:none;">${escapeHtml(email)}</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:10px 0;width:130px;color:#647084;font-size:14px;border-bottom:1px solid #eef2f5;">Subject</td>
+                    <td style="padding:10px 0;color:#121724;font-size:14px;border-bottom:1px solid #eef2f5;font-weight:700;">${escapeHtml(subject)}</td>
+                  </tr>
+                </table>
+
+                <h2 style="margin:0 0 10px;font-size:16px;line-height:1.4;color:#121724;">Message</h2>
+                <div style="padding:16px;background:#f9fbfd;border:1px solid #dde6ed;border-radius:8px;color:#121724;font-size:15px;line-height:1.7;">
+                  ${nl2br(message)}
+                </div>
+
+                <p style="margin:22px 0 0;color:#647084;font-size:13px;line-height:1.5;">
+                  You can reply directly to this email to respond to ${escapeHtml(name)}.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`;
 
   const transporter = nodemailer.createTransport({
     host: smtp.host,
@@ -122,6 +181,7 @@ module.exports = async function handler(req, res) {
       replyTo: email,
       subject: `Portfolio contact: ${subject}`,
       text: emailText,
+      html: emailHtml,
     });
   } catch (error) {
     console.error("Contact email failed:", error);
