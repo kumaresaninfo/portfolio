@@ -57,6 +57,8 @@ Use a Google App Password, not your normal Gmail password. The Google account us
 
 `SMTP_HOST`, `SMTP_PORT`, `SMTP_SECURE`, `SMTP_FROM`, and `CONTACT_TO_EMAIL` have Gmail-friendly defaults. The required values are `SMTP_USER` and `SMTP_PASS`. The function also accepts the older aliases `GMAIL_USER` and `GMAIL_APP_PASSWORD`.
 
+For Vercel production, a local `.env` file is not enough. Add the same values in Vercel Dashboard -> Project -> Settings -> Environment Variables, make sure they are enabled for the Production environment, then redeploy. Environment variable changes do not update an already deployed build until a new deployment runs.
+
 ## Deployment
 
 This site is ready for Vercel. The `/api/contact.js` file is deployed as a Vercel serverless function, and Vercel installs `nodemailer` from `package.json`.

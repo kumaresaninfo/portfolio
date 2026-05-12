@@ -5,8 +5,8 @@ const DEFAULT_EMAIL = "kumaresanpvi23@gmail.com";
 function getSmtpConfig() {
   const host = process.env.SMTP_HOST || "smtp.gmail.com";
   const port = Number(process.env.SMTP_PORT || 465);
-  const user = process.env.SMTP_USER || process.env.GMAIL_USER;
-  const pass = process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD;
+  const user = (process.env.SMTP_USER || process.env.GMAIL_USER || "").trim();
+  const pass = (process.env.SMTP_PASS || process.env.GMAIL_APP_PASSWORD || "").trim();
 
   return {
     host,
@@ -83,11 +83,16 @@ module.exports = async function handler(req, res) {
   const smtp = getSmtpConfig();
 
   if (!smtp.auth) {
+    const missing = [
+      !smtp.auth && !process.env.SMTP_USER && !process.env.GMAIL_USER ? "SMTP_USER" : "",
+      !smtp.auth && !process.env.SMTP_PASS && !process.env.GMAIL_APP_PASSWORD ? "SMTP_PASS" : "",
+    ].filter(Boolean).join(" and ");
+
     renderResponse(
       res,
       500,
       "Email is not configured",
-      "The contact form needs SMTP_USER and SMTP_PASS environment variables in Vercel."
+      `The contact form cannot read ${missing || "SMTP credentials"} in the deployed Vercel environment.`
     );
     return;
   }
