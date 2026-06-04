@@ -59,17 +59,29 @@ function isAllowedRequest(req) {
   const source = req.headers.origin || req.headers.referer;
 
   if (!source) {
-    return process.env.VERCEL_ENV !== "production";
+    return true;
   }
 
+  const requestHost = String(req.headers["x-forwarded-host"] || req.headers.host || "")
+    .split(",")[0]
+    .trim()
+    .toLowerCase();
   const allowedOrigins = new Set(
-    [DEFAULT_ORIGIN, process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "", ...(process.env.ALLOWED_ORIGINS || "").split(",")]
+    [
+      DEFAULT_ORIGIN,
+      process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "",
+      process.env.VERCEL_PROJECT_PRODUCTION_URL
+        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+        : "",
+      ...(process.env.ALLOWED_ORIGINS || "").split(","),
+    ]
       .map((origin) => origin.trim())
       .filter(Boolean)
   );
 
   try {
-    return allowedOrigins.has(new URL(source).origin);
+    const sourceUrl = new URL(source);
+    return sourceUrl.host.toLowerCase() === requestHost || allowedOrigins.has(sourceUrl.origin);
   } catch {
     return false;
   }
