@@ -8,10 +8,50 @@
       name="description"
       content="Portfolio of Kumaresan Rajendran, a Software Engineering Lead with 13+ years of experience in Laravel, Vue, Nuxt, CRM platforms, travel technology, SaaS architecture, and API integrations."
     >
+    <link rel="canonical" href="https://kumaresan.coderfolio.in/">
+    <meta property="og:title" content="Kumaresan Rajendran | Software Engineering Lead">
+    <meta property="og:description" content="Engineering lead with 13+ years in SaaS, CRM, travel technology, Laravel platforms, and API-first product delivery.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kumaresan.coderfolio.in/">
+    <meta property="og:image" content="https://kumaresan.coderfolio.in/assets/og-image.png">
+    <meta property="og:image:alt" content="Kumaresan Rajendran software engineering portfolio">
+    <meta property="og:site_name" content="Kumaresan Rajendran Portfolio">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kumaresan Rajendran | Software Engineering Lead">
+    <meta name="twitter:description" content="Engineering lead with 13+ years in SaaS, CRM, travel technology, Laravel platforms, and API-first product delivery.">
+    <meta name="twitter:image" content="https://kumaresan.coderfolio.in/assets/og-image.png">
     <meta name="theme-color" content="#f6f8fb">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="alternate icon" href="assets/favicon.ico">
     <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Kumaresan Rajendran",
+        "jobTitle": "Software Engineering Lead",
+        "url": "https://kumaresan.coderfolio.in/",
+        "email": "mailto:kumaresanpvi23@gmail.com",
+        "telephone": "+91 99437 68515",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Chennai",
+          "addressCountry": "IN"
+        },
+        "sameAs": [
+          "https://www.linkedin.com/in/kumaresan-rajendran/"
+        ],
+        "knowsAbout": [
+          "Laravel",
+          "Vue.js",
+          "Nuxt.js",
+          "CRM architecture",
+          "Travel technology",
+          "SaaS platforms",
+          "API integrations"
+        ]
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -277,6 +317,11 @@
             <p>
               Multi-tenant CRM platform with reusable modules, workflow automation, dynamic RBAC, ERP/mail integrations, Redis-backed optimization, and rapid client-specific implementations.
             </p>
+            <dl class="project-proof">
+              <div><dt>Role</dt><dd>Architecture and engineering lead</dd></div>
+              <div><dt>Scale</dt><dd>20+ US enterprise clients</dd></div>
+              <div><dt>Impact</dt><dd>Reusable modules and faster client implementations</dd></div>
+            </dl>
             <ul class="tag-list" aria-label="Whitecup CRM technologies">
               <li>PHP</li>
               <li>Yii</li>
@@ -293,6 +338,11 @@
             <p>
               High-volume travel platforms with B2B/B2C booking flows, multi-GDS integration, dynamic pricing, contract automation, and CI/CD release automation.
             </p>
+            <dl class="project-proof">
+              <div><dt>Role</dt><dd>Technical project manager</dd></div>
+              <div><dt>Scale</dt><dd>5M+ monthly API calls</dd></div>
+              <div><dt>Impact</dt><dd>Release cycle reduced from 2 weeks to 3 days</dd></div>
+            </dl>
             <ul class="tag-list" aria-label="Clarity platform technologies">
               <li>Laravel</li>
               <li>Vue.js</li>
@@ -309,6 +359,11 @@
             <p>
               Flight, hotel, and vacation package systems with supplier connectors, middleware APIs, payment gateways, production hot-fixes, and zero-downtime feature releases.
             </p>
+            <dl class="project-proof">
+              <div><dt>Role</dt><dd>Senior software engineer</dd></div>
+              <div><dt>Scope</dt><dd>Flights, hotels, packages, and payments</dd></div>
+              <div><dt>Impact</dt><dd>Supplier integration timelines reduced by 30%</dd></div>
+            </dl>
             <ul class="tag-list" aria-label="Booking engine technologies">
               <li>React.js</li>
               <li>Node.js</li>
@@ -393,22 +448,22 @@
 
             <div class="form-field">
               <label for="contact-name">Name</label>
-              <input id="contact-name" name="name" type="text" autocomplete="name" required>
+              <input id="contact-name" name="name" type="text" autocomplete="name" maxlength="100" required>
             </div>
 
             <div class="form-field">
               <label for="contact-email">Email</label>
-              <input id="contact-email" name="email" type="email" autocomplete="email" required>
+              <input id="contact-email" name="email" type="email" autocomplete="email" maxlength="254" required>
             </div>
 
             <div class="form-field">
               <label for="contact-subject">Subject</label>
-              <input id="contact-subject" name="subject" type="text" autocomplete="off" required>
+              <input id="contact-subject" name="subject" type="text" autocomplete="off" maxlength="160" required>
             </div>
 
             <div class="form-field">
               <label for="contact-message">Message</label>
-              <textarea id="contact-message" name="message" rows="6" required></textarea>
+              <textarea id="contact-message" name="message" rows="6" maxlength="5000" required></textarea>
             </div>
 
             <button class="button primary" type="submit">Send Message</button>

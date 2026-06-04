@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+docs/
+responsive-check/
+README.md

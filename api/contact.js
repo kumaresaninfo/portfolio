@@ -1,6 +1,10 @@
 const nodemailer = require("nodemailer");
 
 const DEFAULT_EMAIL = "kumaresanpvi23@gmail.com";
+const DEFAULT_ORIGIN = "https://kumaresan.coderfolio.in";
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 5;
+const requestLog = new Map();
 
 function getSmtpConfig() {
   const host = process.env.SMTP_HOST || "smtp.gmail.com";
@@ -35,8 +39,46 @@ function nl2br(value = "") {
   return escapeHtml(value).replace(/\n/g, "<br>");
 }
 
+function getClientIp(req) {
+  const forwarded = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim();
+  return forwarded || req.socket?.remoteAddress || "unknown";
+}
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const recentRequests = (requestLog.get(ip) || []).filter(
+    (timestamp) => now - timestamp < RATE_LIMIT_WINDOW_MS
+  );
+
+  recentRequests.push(now);
+  requestLog.set(ip, recentRequests);
+  return recentRequests.length > RATE_LIMIT_MAX_REQUESTS;
+}
+
+function isAllowedRequest(req) {
+  const source = req.headers.origin || req.headers.referer;
+
+  if (!source) {
+    return process.env.VERCEL_ENV !== "production";
+  }
+
+  const allowedOrigins = new Set(
+    [DEFAULT_ORIGIN, process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "", ...(process.env.ALLOWED_ORIGINS || "").split(",")]
+      .map((origin) => origin.trim())
+      .filter(Boolean)
+  );
+
+  try {
+    return allowedOrigins.has(new URL(source).origin);
+  } catch {
+    return false;
+  }
+}
+
 function renderResponse(res, statusCode, title, message) {
-  res.status(statusCode).setHeader("Content-Type", "text/html; charset=utf-8");
+  res.status(statusCode);
+  res.setHeader("Cache-Control", "no-store");
+  res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.end(`<!doctype html>
 <html lang="en">
   <head>
@@ -64,6 +106,17 @@ module.exports = async function handler(req, res) {
     return;
   }
 
+  if (!isAllowedRequest(req)) {
+    renderResponse(res, 403, "Request blocked", "This contact request did not originate from the portfolio website.");
+    return;
+  }
+
+  if (isRateLimited(getClientIp(req))) {
+    res.setHeader("Retry-After", String(RATE_LIMIT_WINDOW_MS / 1000));
+    renderResponse(res, 429, "Too many requests", "Please wait a few minutes before sending another message.");
+    return;
+  }
+
   if (req.body?._honey) {
     renderResponse(res, 200, "Message sent", "Thank you. I will review your message and respond soon.");
     return;
@@ -81,6 +134,11 @@ module.exports = async function handler(req, res) {
 
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     renderResponse(res, 400, "Invalid email", "Please enter a valid email address.");
+    return;
+  }
+
+  if (name.length > 100 || email.length > 254 || subject.length > 160 || message.length > 5000) {
+    renderResponse(res, 400, "Message too long", "Please shorten the submitted contact details and try again.");
     return;
   }
 
@@ -189,7 +247,7 @@ module.exports = async function handler(req, res) {
       res,
       502,
       "Message not sent",
-      "The email service could not send the message. Please contact me directly at kumaresanpvi23@gmail.com."
+      `The email service could not send the message. Please contact me directly at ${DEFAULT_EMAIL}.`
     );
     return;
   }
