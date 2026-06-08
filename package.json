@@ -1,0 +1,14 @@
+{
+  "name": "kumaresan-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "vercel dev",
+    "check": "node --check script.js && node --check api/contact.js",
+    "lint": "npm run check",
+    "test": "npm run check"
+  },
+  "dependencies": {
+    "nodemailer": "^8.0.10"
+  }
+}
