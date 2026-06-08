@@ -856,6 +856,68 @@ li a {
   pointer-events: none;
 }
 
+.field-error {
+  display: block;
+  min-height: 1.2em;
+  color: var(--red);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+.form-field input.is-invalid,
+.form-field textarea.is-invalid {
+  border-color: var(--red);
+  background: #fff8f8;
+  box-shadow: 0 0 0 3px rgba(183, 81, 69, 0.12);
+}
+
+.form-field input.is-valid,
+.form-field textarea.is-valid {
+  border-color: var(--green);
+}
+
+.form-status {
+  padding: 13px 16px;
+  border-radius: var(--radius);
+  font-size: 0.94rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.form-status.status-success {
+  color: #2d5c35;
+  background: #eaf7ec;
+  border: 1px solid #b6e4be;
+}
+
+.form-status.status-error {
+  color: #7a2c25;
+  background: #fff0ee;
+  border: 1px solid #f5c0bb;
+}
+
+.button.is-loading {
+  opacity: 0.75;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  vertical-align: middle;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .site-footer {
   padding: 22px 16px;
   color: var(--muted);
