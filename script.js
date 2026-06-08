@@ -1,3 +1,105 @@
+/* ── Dark mode ─────────────────────────────────────────────── */
+(function () {
+  const root   = document.documentElement;
+  const btn    = document.getElementById("dark-toggle");
+  const KEY    = "kr-theme";
+
+  function applyTheme(dark) {
+    root.setAttribute("data-theme", dark ? "dark" : "");
+    localStorage.setItem(KEY, dark ? "dark" : "light");
+  }
+
+  // Restore saved preference or system preference
+  const saved  = localStorage.getItem(KEY);
+  const prefer = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  applyTheme(saved ? saved === "dark" : prefer);
+
+  if (btn) {
+    btn.addEventListener("click", () => {
+      applyTheme(root.getAttribute("data-theme") !== "dark");
+    });
+  }
+}());
+
+/* ── Scroll fade-up (IntersectionObserver) ──────────────────── */
+(function () {
+  if (!("IntersectionObserver" in window)) {
+    document.querySelectorAll(".fade-up").forEach(el => el.classList.add("visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+
+  document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+}());
+
+/* ── Animated stats counter ─────────────────────────────────── */
+(function () {
+  const counters = document.querySelectorAll(".hero-stats dt[data-count]");
+  if (!counters.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el     = entry.target;
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || "";
+      const duration = 1200;
+      const steps    = 40;
+      let   current  = 0;
+      const increment = target / steps;
+      const interval  = duration / steps;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          el.textContent = target + suffix;
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current) + suffix;
+        }
+      }, interval);
+
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+
+  counters.forEach(el => observer.observe(el));
+}());
+
+/* ── Rotating hero role text ────────────────────────────────── */
+(function () {
+  const el = document.getElementById("rotating-role");
+  if (!el) return;
+
+  const roles = [
+    "Laravel Expert",
+    "CRM Architect",
+    "Engineering Lead",
+    "SaaS Builder",
+    "API Integrations Lead",
+  ];
+  let index = 0;
+
+  setInterval(() => {
+    el.classList.add("fade-out");
+    setTimeout(() => {
+      index = (index + 1) % roles.length;
+      el.textContent = roles[index];
+      el.classList.remove("fade-out");
+      el.classList.add("fade-in");
+      setTimeout(() => el.classList.remove("fade-in"), 350);
+    }, 350);
+  }, 2800);
+}());
+
 /* ── Footer year ───────────────────────────────────────────── */
 const year = document.querySelector("#year");
 if (year) {

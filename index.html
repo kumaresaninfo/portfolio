@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,6 +20,9 @@
     <meta name="theme-color" content="#f6f8fb">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="alternate icon" href="assets/favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800;900&family=Inter:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script type="application/ld+json">
       {
@@ -63,12 +66,19 @@
           </span>
         </a>
 
-        <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">
-          <span class="nav-toggle-line"></span>
-          <span class="nav-toggle-line"></span>
-          <span class="nav-toggle-line"></span>
-          <span class="sr-only">Menu</span>
-        </button>
+        <div class="nav-right">
+          <button class="dark-toggle" id="dark-toggle" type="button" aria-label="Toggle dark mode">
+            <span class="dark-icon-light" aria-hidden="true">☀</span>
+            <span class="dark-icon-dark" aria-hidden="true">☾</span>
+          </button>
+
+          <button class="nav-toggle" type="button" aria-controls="primary-nav" aria-expanded="false">
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="nav-toggle-line"></span>
+            <span class="sr-only">Menu</span>
+          </button>
+        </div>
 
         <div class="nav-links" id="primary-nav">
           <a href="#skills">Skills</a>
@@ -85,7 +95,8 @@
       <section class="hero" id="top" aria-labelledby="hero-title">
         <div class="hero-inner">
           <div class="hero-copy">
-            <p class="eyebrow">Software Engineering Lead | Laravel | Vue-Nuxt | CRM SaaS</p>
+            <p class="availability"><span class="pulse-dot" aria-hidden="true"></span>Open to Engineering Lead opportunities</p>
+            <p class="eyebrow">I'm a <span class="rotating-role" id="rotating-role" aria-live="polite">Laravel Expert</span></p>
             <h1 id="hero-title">Kumaresan Rajendran</h1>
             <p class="hero-summary">
               Engineering lead with 13+ years in CRM and travel technology platforms, combining hands-on PHP-Laravel engineering, API-first system design, performance optimization, and team leadership.
@@ -108,19 +119,19 @@
             <h2>Engineering lead for enterprise SaaS, CRM, and travel technology platforms.</h2>
             <dl class="hero-stats" aria-label="Career highlights">
               <div>
-                <dt>13+</dt>
+                <dt data-count="13" data-suffix="+">13+</dt>
                 <dd>Years of experience</dd>
               </div>
               <div>
-                <dt>20+</dt>
+                <dt data-count="20" data-suffix="+">20+</dt>
                 <dd>US CRM clients</dd>
               </div>
               <div>
-                <dt>5M+</dt>
+                <dt data-count="5" data-suffix="M+">5M+</dt>
                 <dd>Monthly API calls</dd>
               </div>
               <div>
-                <dt>3 days</dt>
+                <dt data-count="3" data-suffix=" days">3 days</dt>
                 <dd>Release cycle</dd>
               </div>
             </dl>
@@ -156,25 +167,25 @@
         </div>
 
         <div class="service-grid">
-          <article class="service-card">
+          <article class="service-card fade-up">
             <span class="service-icon" aria-hidden="true">01</span>
             <h3>Backend Architecture</h3>
             <p>Laravel, PHP, CodeIgniter, Node.js, REST APIs, microservices, modular architecture, and server-side rendering.</p>
           </article>
 
-          <article class="service-card">
+          <article class="service-card fade-up">
             <span class="service-icon" aria-hidden="true">02</span>
             <h3>Frontend Product Delivery</h3>
             <p>Vue.js, Nuxt.js, React.js, JavaScript, jQuery, HTML, CSS, and practical UI delivery for operational systems.</p>
           </article>
 
-          <article class="service-card">
+          <article class="service-card fade-up">
             <span class="service-icon" aria-hidden="true">03</span>
             <h3>Cloud and DevOps</h3>
             <p>CI/CD pipelines, Jenkins, Docker, AWS EC2/S3/RDS, Azure AI Services, IIS, Apache, Nginx, Redis, and Git workflows.</p>
           </article>
 
-          <article class="service-card">
+          <article class="service-card fade-up">
             <span class="service-icon" aria-hidden="true">04</span>
             <h3>AI-Assisted Engineering</h3>
             <p>Practical use of Claude, Cursor, and Codex for code review, refactoring, documentation, debugging, and faster implementation planning.</p>
@@ -182,59 +193,50 @@
         </div>
       </section>
 
-      <section class="section proficiency-section" aria-labelledby="proficiency-title">
-        <div class="section-grid align-center">
-          <div>
-            <p class="section-kicker">Proficiency</p>
-            <h2 id="proficiency-title">Balanced between architecture decisions, hands-on delivery, and team execution.</h2>
+      <section class="section tech-section" aria-labelledby="tech-title">
+        <div class="section-heading">
+          <p class="section-kicker">Tech Stack</p>
+          <h2 id="tech-title">Technologies I use to build, lead, and ship.</h2>
+        </div>
+        <div class="skill-groups">
+          <div class="skill-group fade-up">
+            <span class="skill-group-label">Backend</span>
+            <ul class="skill-tags" aria-label="Backend technologies">
+              <li>Laravel</li><li>PHP</li><li>Yii</li><li>CodeIgniter</li><li>Node.js</li><li>REST APIs</li><li>Microservices</li>
+            </ul>
           </div>
-
-          <div class="proficiency-list" aria-label="Skill proficiency levels">
-            <div class="progress-item">
-              <div class="progress-label">
-                <span>Backend and API Engineering</span>
-                <strong>95%</strong>
-              </div>
-              <span class="progress-bar progress-95" role="progressbar" aria-label="Backend and API Engineering proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="95"><span></span></span>
-            </div>
-            <div class="progress-item">
-              <div class="progress-label">
-                <span>CRM and Workflow Architecture</span>
-                <strong>92%</strong>
-              </div>
-              <span class="progress-bar progress-92" role="progressbar" aria-label="CRM and Workflow Architecture proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="92"><span></span></span>
-            </div>
-            <div class="progress-item">
-              <div class="progress-label">
-                <span>Frontend Delivery</span>
-                <strong>84%</strong>
-              </div>
-              <span class="progress-bar progress-84" role="progressbar" aria-label="Frontend Delivery proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="84"><span></span></span>
-            </div>
-            <div class="progress-item">
-              <div class="progress-label">
-                <span>Cloud, CI/CD, and Performance</span>
-                <strong>88%</strong>
-              </div>
-              <span class="progress-bar progress-88" role="progressbar" aria-label="Cloud, CI/CD, and Performance proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="88"><span></span></span>
-            </div>
-            <div class="progress-item">
-              <div class="progress-label">
-                <span>Team Leadership and Delivery</span>
-                <strong>90%</strong>
-              </div>
-              <span class="progress-bar progress-90" role="progressbar" aria-label="Team Leadership and Delivery proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90"><span></span></span>
-            </div>
-            <div class="progress-item">
-              <div class="progress-label">
-                <span>AI-Augmented Development Workflow</span>
-                <strong>86%</strong>
-              </div>
-              <span class="progress-bar progress-86" role="progressbar" aria-label="AI-Augmented Development Workflow proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="86"><span></span></span>
-            </div>
+          <div class="skill-group fade-up">
+            <span class="skill-group-label">Frontend</span>
+            <ul class="skill-tags" aria-label="Frontend technologies">
+              <li>Vue.js</li><li>Nuxt.js</li><li>React.js</li><li>JavaScript</li><li>jQuery</li><li>HTML</li><li>CSS</li>
+            </ul>
+          </div>
+          <div class="skill-group fade-up">
+            <span class="skill-group-label">Cloud &amp; DevOps</span>
+            <ul class="skill-tags" aria-label="Cloud and DevOps">
+              <li>AWS EC2/S3/RDS</li><li>Docker</li><li>Jenkins</li><li>CI/CD</li><li>Redis</li><li>Nginx</li><li>Apache</li><li>IIS</li>
+            </ul>
+          </div>
+          <div class="skill-group fade-up">
+            <span class="skill-group-label">Database</span>
+            <ul class="skill-tags" aria-label="Database technologies">
+              <li>MySQL</li><li>Redis</li><li>SQL Server</li>
+            </ul>
+          </div>
+          <div class="skill-group fade-up">
+            <span class="skill-group-label">AI &amp; Tools</span>
+            <ul class="skill-tags" aria-label="AI and tools">
+              <li>Claude</li><li>Cursor</li><li>Codex</li><li>Azure AI Services</li><li>Git</li><li>Jira</li>
+            </ul>
           </div>
         </div>
       </section>
+
+      <div class="wave-divider wave-to-dark" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,0 C360,60 1080,0 1440,40 L1440,60 L0,60 Z" fill="var(--ink)"/>
+        </svg>
+      </div>
 
       <section class="section experience-section" id="experience" aria-labelledby="experience-title">
         <div class="section-heading">
@@ -243,7 +245,7 @@
         </div>
 
         <div class="experience-list">
-          <article class="experience-card">
+          <article class="experience-card fade-up">
             <div class="experience-meta">
               <span>May 2024 - Present</span>
               <strong>Chennai</strong>
@@ -257,7 +259,7 @@
             </div>
           </article>
 
-          <article class="experience-card">
+          <article class="experience-card fade-up">
             <div class="experience-meta">
               <span>Feb 2018 - Apr 2024</span>
               <strong>Chennai</strong>
@@ -271,7 +273,7 @@
             </div>
           </article>
 
-          <article class="experience-card">
+          <article class="experience-card fade-up">
             <div class="experience-meta">
               <span>May 2016 - Jan 2018</span>
               <strong>Chennai</strong>
@@ -285,7 +287,7 @@
             </div>
           </article>
 
-          <article class="experience-card">
+          <article class="experience-card fade-up">
             <div class="experience-meta">
               <span>May 2014 - May 2016</span>
               <strong>Chennai</strong>
@@ -308,7 +310,7 @@
         </div>
 
         <div class="project-grid">
-          <article class="project-card">
+          <article class="project-card fade-up">
             <p class="project-type">Enterprise CRM</p>
             <h3>Whitecup CRM</h3>
             <p>
@@ -329,7 +331,7 @@
             </ul>
           </article>
 
-          <article class="project-card">
+          <article class="project-card fade-up">
             <p class="project-type">Travel Platforms</p>
             <h3>ClarityIBE, ClarityNDC, ClarityGTS</h3>
             <p>
@@ -350,7 +352,7 @@
             </ul>
           </article>
 
-          <article class="project-card">
+          <article class="project-card fade-up">
             <p class="project-type">Booking Systems</p>
             <h3>B2B/B2C Travel Booking Engines</h3>
             <p>
@@ -372,6 +374,12 @@
         </div>
       </section>
 
+      <div class="wave-divider wave-from-dark" aria-hidden="true">
+        <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,40 C360,0 1080,60 1440,20 L1440,0 L0,0 Z" fill="var(--ink)"/>
+        </svg>
+      </div>
+
       <section class="section achievements-section" id="achievements" aria-labelledby="achievements-title">
         <div class="section-heading">
           <p class="section-kicker">Achievements and Certifications</p>
@@ -379,19 +387,19 @@
         </div>
 
         <div class="achievement-grid">
-          <article class="achievement-card">
+          <article class="achievement-card fade-up">
             <h3>AWS Certified Solutions Architect - Professional</h3>
             <p>SAP-C02 certification aligned to scalable cloud architecture and production platform decisions.</p>
           </article>
-          <article class="achievement-card">
+          <article class="achievement-card fade-up">
             <h3>Microsoft Azure AI Essentials</h3>
             <p>Professional certificate supporting AI service awareness and modern platform capability planning.</p>
           </article>
-          <article class="achievement-card">
+          <article class="achievement-card fade-up">
             <h3>Ubuntu Linux Professional Certificate</h3>
             <p>Canonical credential supporting Linux packaging, deployment, and server-side operations.</p>
           </article>
-          <article class="achievement-card">
+          <article class="achievement-card fade-up">
             <h3>Career Essentials in Generative AI</h3>
             <p>Microsoft certification focused on practical GenAI awareness for software and business workflows.</p>
           </article>
@@ -405,19 +413,19 @@
         </div>
 
         <div class="ai-grid">
-          <article class="ai-card">
+          <article class="ai-card fade-up">
             <h3>Claude</h3>
             <p>Used for architecture thinking, complex problem breakdown, implementation options, and technical writing support.</p>
           </article>
-          <article class="ai-card">
+          <article class="ai-card fade-up">
             <h3>Cursor</h3>
             <p>Used inside the editor for code navigation, refactoring support, quick iteration, and context-aware implementation flow.</p>
           </article>
-          <article class="ai-card">
+          <article class="ai-card fade-up">
             <h3>Codex</h3>
             <p>Used for implementation assistance, code review, test ideas, documentation updates, and structured codebase changes.</p>
           </article>
-          <article class="ai-card">
+          <article class="ai-card fade-up">
             <h3>Responsible Usage</h3>
             <p>AI output is reviewed against business rules, system behavior, security expectations, and maintainable engineering standards.</p>
           </article>
