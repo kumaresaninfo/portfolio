@@ -17,7 +17,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data:; script-src 'self' 'sha256-CHjw+xgtEP5b4Jfy6XK7RSojxRlEOS+gTmetxv3qUoQ='; style-src 'self'"
+          "value": "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: https://kumaresan.coderfolio.in; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'sha256-gtsPx8y1SdX04mQvKa+Zsen7L4XYpxJt702Zq/oeAGs='; style-src 'self' https://fonts.googleapis.com"
         }
       ]
     }

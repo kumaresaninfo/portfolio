@@ -7,6 +7,7 @@
   function applyTheme(dark) {
     root.setAttribute("data-theme", dark ? "dark" : "");
     localStorage.setItem(KEY, dark ? "dark" : "light");
+    if (btn) btn.setAttribute("aria-pressed", String(dark));
   }
 
   // Restore saved preference or system preference
