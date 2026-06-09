@@ -689,7 +689,7 @@ li a {
   width: fit-content;
   padding: 5px 8px;
   color: var(--blue);
-  background: #edf3fb;
+  background: rgba(88, 166, 255, 0.12);
   border-radius: var(--radius);
   font-size: 0.78rem;
   text-transform: uppercase;
@@ -1308,7 +1308,10 @@ li a {
   border-color: var(--line);
 }
 
-[data-theme="dark"] .tech-section {
+.tech-section {
+  width: 100%;
+  max-width: none;
+  padding: clamp(72px, 9vw, 112px) max(16px, calc((100vw - var(--max)) / 2));
   background: var(--surface-soft);
 }
 
@@ -1360,6 +1363,23 @@ li a {
 [data-theme="dark"] .nav-links a:hover {
   color: var(--ink);
   background: var(--surface-soft);
+}
+
+[data-theme="dark"] .form-field input.is-invalid,
+[data-theme="dark"] .form-field textarea.is-invalid {
+  background: rgba(248, 81, 73, 0.08);
+}
+
+[data-theme="dark"] .form-status.status-success {
+  color: #7ee2a8;
+  background: rgba(46, 160, 67, 0.12);
+  border-color: rgba(46, 160, 67, 0.3);
+}
+
+[data-theme="dark"] .form-status.status-error {
+  color: #f85149;
+  background: rgba(248, 81, 73, 0.1);
+  border-color: rgba(248, 81, 73, 0.3);
 }
 
 /* ── Reduced motion ──────────────────────────────────────────── */
