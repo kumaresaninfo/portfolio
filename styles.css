@@ -660,72 +660,6 @@ li a {
   color: var(--muted);
 }
 
-.proficiency-section {
-  width: 100%;
-  max-width: none;
-  padding-right: max(16px, calc((100vw - var(--max)) / 2));
-  padding-left: max(16px, calc((100vw - var(--max)) / 2));
-  background: #eaf1f5;
-}
-
-.proficiency-list {
-  display: grid;
-  gap: 20px;
-}
-
-.progress-label {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 8px;
-  color: var(--ink);
-  font-weight: 850;
-}
-
-.progress-label strong {
-  color: var(--teal-dark);
-}
-
-.progress-bar {
-  display: block;
-  height: 10px;
-  overflow: hidden;
-  background: #d3e0e8;
-  border-radius: 999px;
-}
-
-.progress-bar span {
-  display: block;
-  height: 100%;
-  background: linear-gradient(90deg, var(--teal), var(--blue));
-  border-radius: inherit;
-}
-
-.progress-95 span {
-  width: 95%;
-}
-
-.progress-92 span {
-  width: 92%;
-}
-
-.progress-90 span {
-  width: 90%;
-}
-
-.progress-88 span {
-  width: 88%;
-}
-
-.progress-86 span {
-  width: 86%;
-}
-
-.progress-84 span {
-  width: 84%;
-}
-
-
 .experience-section {
   padding-bottom: 72px;
 }
@@ -1251,7 +1185,6 @@ li a {
     padding: 66px 0;
   }
 
-  .proficiency-section,
   .projects-section {
     padding-right: 12px;
     padding-left: 12px;
@@ -1380,7 +1313,6 @@ li a {
   border-color: var(--line);
 }
 
-[data-theme="dark"] .proficiency-section,
 [data-theme="dark"] .tech-section {
   background: var(--surface-soft);
 }
