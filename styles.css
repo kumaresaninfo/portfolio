@@ -280,7 +280,7 @@ li a {
   gap: clamp(34px, 6vw, 82px);
   width: min(100% - 32px, var(--max));
   margin: 0 auto;
-  padding: clamp(72px, 9vw, 116px) 0;
+  padding: clamp(40px, 5vw, 72px) 0;
 }
 
 .hero-copy {
@@ -1080,7 +1080,7 @@ li a {
   .hero-inner {
     grid-template-columns: 1fr;
     align-items: start;
-    padding-top: 66px;
+    padding-top: 40px;
   }
 
   .experience-card {
@@ -1109,7 +1109,7 @@ li a {
 
   .hero-inner {
     width: min(100% - 24px, var(--max));
-    padding: 54px 0;
+    padding: 36px 0;
     gap: 28px;
   }
 
