@@ -706,16 +706,16 @@ li a {
   max-width: none;
   padding-right: max(16px, calc((100vw - var(--max)) / 2));
   padding-left: max(16px, calc((100vw - var(--max)) / 2));
-  background: var(--ink);
+  background: var(--surface-soft);
 }
 
 .projects-section .section-kicker {
-  color: #91ded7;
+  color: var(--teal);
 }
 
 .projects-section h2,
 .projects-section h3 {
-  color: #ffffff;
+  color: var(--ink);
 }
 
 .project-card {
@@ -723,18 +723,18 @@ li a {
   min-height: 490px;
   flex-direction: column;
   padding: 26px;
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow: none;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 42px rgba(18, 23, 36, 0.06);
 }
 
 .project-card p {
-  color: rgba(255, 255, 255, 0.72);
+  color: var(--muted);
 }
 
 .project-type {
   margin: 0 0 16px;
-  color: #91ded7 !important;
+  color: var(--teal) !important;
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -751,11 +751,11 @@ li a {
   grid-template-columns: 60px minmax(0, 1fr);
   gap: 10px;
   padding-top: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid var(--line);
 }
 
 .project-proof dt {
-  color: #91ded7;
+  color: var(--teal);
   font-size: 0.75rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -763,7 +763,7 @@ li a {
 
 .project-proof dd {
   margin: 0;
-  color: rgba(255, 255, 255, 0.82);
+  color: var(--muted);
   font-size: 0.86rem;
   line-height: 1.45;
 }
@@ -779,12 +779,18 @@ li a {
 
 .tag-list li {
   padding: 7px 10px;
-  color: #ddfff7;
-  background: rgba(12, 124, 120, 0.24);
-  border: 1px solid rgba(145, 222, 215, 0.32);
+  color: var(--teal-dark);
+  background: rgba(12, 124, 120, 0.1);
+  border: 1px solid rgba(12, 124, 120, 0.22);
   border-radius: var(--radius);
   font-size: 0.84rem;
   font-weight: 800;
+  transition: background var(--transition), color var(--transition);
+}
+
+.tag-list li:hover {
+  background: var(--teal-dark);
+  color: #fff;
 }
 
 .achievement-card {
@@ -1285,17 +1291,6 @@ li a {
 .fade-up:nth-child(3) { transition-delay: 0.16s; }
 .fade-up:nth-child(4) { transition-delay: 0.24s; }
 
-/* ── Wave dividers ───────────────────────────────────────────── */
-.wave-divider {
-  line-height: 0;
-  overflow: hidden;
-}
-
-.wave-divider svg {
-  display: block;
-  width: 100%;
-  height: 60px;
-}
 
 /* ── Dark mode surface adjustments ──────────────────────────── */
 [data-theme="dark"] .hero-card,
@@ -1317,8 +1312,10 @@ li a {
   background: var(--surface-soft);
 }
 
-[data-theme="dark"] .projects-section {
-  background: #010409;
+[data-theme="dark"] .tag-list li {
+  color: var(--teal);
+  background: rgba(57, 208, 200, 0.1);
+  border-color: rgba(57, 208, 200, 0.22);
 }
 
 [data-theme="dark"] .contact-section {
